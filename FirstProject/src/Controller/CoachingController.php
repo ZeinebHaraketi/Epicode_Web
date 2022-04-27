@@ -223,4 +223,23 @@ class CoachingController extends AbstractController
    
 
 
+    /**
+     * @Route("/modifiervalidation/{id}", name="c")
+     * @param Request $request
+     * @return Response
+     */      
+    public function modiferValidation(Request $request,$id): Response
+    {
+        $Coaching = new Coaching();
+        $Coaching = $this->getDoctrine()->getRepository(Coaching::class)->find($id);
+
+       $Coaching->setValidation("valide");
+      
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($Coaching);
+        $em->flush();
+        return $this->redirectToRoute("app_coaching_index");
+        }
+
+    
 }
