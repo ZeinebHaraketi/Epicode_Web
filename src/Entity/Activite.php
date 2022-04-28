@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Activite
  *
  * @ORM\Table(name="activite", indexes={@ORM\Index(name="id_enfant", columns={"id_enfant"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ActiviteRepository")
  */
 class Activite
 {
@@ -26,6 +26,12 @@ class Activite
      * @var string
      * @Assert\NotNull
      * @ORM\Column(name="nom_a", type="string", length=50, nullable=false)
+     * @Assert\Length(
+     * min = 5,
+     * max = 10,
+     * minMessage = "Votre Nom doit être au moins {{ limit }} characters long",
+     * maxMessage = "Votre Nom ne peut pas etre plus {{ limit }} characters"
+     * )
      */
     private $nomA;
 
@@ -47,6 +53,7 @@ class Activite
      * @var string
      * 
      * @ORM\Column(name="image", type="string", length=255, nullable=false)
+     * 
      */
     private $image;
 

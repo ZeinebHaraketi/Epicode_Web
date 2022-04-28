@@ -1,16 +1,10 @@
-
-{% extends 'base.html.twig' %}
-
-
-
-{% block body %}
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title> {% block title %}Admin!{% endblock %} </title>
+        <title> {% block title %}Epicode{% endblock %} </title>
         <meta content="Admin Dashboard" name="description" />
         <meta content="Mannatthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -47,7 +41,7 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <div class="text-center">
-                        <a href="index.html" class="logo"><i class="mdi mdi-assistant"></i> Annex</a>
+                        <a href="{{path('app_client_back')}}" class="logo"><i class="mdi mdi-assistant"></i> Feel The Burn</a>
                         <!-- <a href="index.html" class="logo"><img src="assets/images/logo.png" height="24" alt="logo"></a> -->
                     </div>
                 </div>
@@ -106,16 +100,16 @@
                             </li>
 
                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-clipboard-outline"></i><span> Activite </span> <span class="badge badge-pill badge-info float-right"></span></a>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-clipboard-outline"></i><span> Activite </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                 <li><a href="{{ path('app_activite_index') }}">Accueil Activite</a></li>
-                                    
+                                   
                                 </ul>
                             </li><li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-clipboard-outline"></i><span> Enfant</span> <span class="badge badge-pill badge-info float-right"></span></a>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-clipboard-outline"></i><span> Enfant</span><span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
                                 <li><a href="{{ path('app_enfant_index') }}">Accueil Enfant</a></li>
-                                   
+                                    
                                 </ul>
                             </li>
 
@@ -242,7 +236,7 @@
                                         <!-- All-->
                                         <a href="javascript:void(0);" class="dropdown-item notify-item">
                                             View All
-                                        </a>
+                                        </a>#}
 
                                     </div>
                                 </li>
@@ -288,7 +282,7 @@
                                 <li class="list-inline-item dropdown notification-list">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
                                        aria-haspopup="false" aria-expanded="false">
-                                        <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle">
+                                        <img src="{{asset('assets/images/users/user.jpg')}}" alt="user" class="rounded-circle">
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                         <!-- item-->
@@ -315,6 +309,8 @@
                                 <li class="hide-phone app-search">
                                     <form role="search" class="">
                                         <input type="text" placeholder="Search..." class="form-control">
+                                        <a href="{{path('listActWithSearch')}}"><i class="fa fa-search"></i></a>
+                                        <a href=""><i class="fa fa-search"></i></a>
                                         <a href=""><i class="fa fa-search"></i></a>
                                     </form>
                                 </li>
@@ -326,7 +322,7 @@
 
                     </div>
                     <!-- Top Bar End -->
-
+                     
                     <div class="page-content-wrapper ">
 
                         <div class="container-fluid">
@@ -335,9 +331,9 @@
                                 <div class="col-sm-12">
                                     <div class="page-title-box">
                                         <div class="btn-group float-right">
-                                            <ol class="breadcrumb hide-phone p-0 m-0">
-                                                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                                <li class="breadcrumb-item active">Enfant</li>
+                                            <ol class="breadcrumb hide-phone p-0 m-0">                                           
+                                                <li class="breadcrumb-item active">Dashboard</li>
+                                                <li class="breadcrumb-item"><a href="#">Enfant</a></li>
                                             </ol>
                                         </div>
                                         <h4 class="page-title">Dashboard</h4>
@@ -345,62 +341,57 @@
                                 </div>
                             </div>
                             <!-- end page title end breadcrumb -->
-    
+                            <form>
+                            <input id="impression" class="js-programmatic-set-val btn btn-outline-primary mr-1 mb-1s" name="impression" type="button" onclick="imprimer_page()" value="Print this page" />
+                        </form>
                                 <!-- Column -->
                             
-
+                               
                            
                             <div class="row">
                                 <div class="col-md-12  align-self-center">
                                     <div class="card bg-white mb-6">
                                         <div class="card-body new-user">
-                                            <h5 class="header-title mb-4 mt-0">Gestion des Enfant</h5>
-                                         
-                                       <h1>Enfant</h1>
+                                            <h5 class="header-title mb-4 mt-0">Gestion des Activites</h5>
+                                            <div class="table-responsive">
+                                                                <script type="text/javascript">
+                        function imprimer_page(){
+                            window.print();
+                        }
+                    </script>
+                </li>
+                                                
+                                               
+                                               <div class="app-content">
+        <div class="side-app">
+            <div class="page-header">
+                <h4 class="page-title">statistiques</h4>
 
-    <table class="table"  >
-    <colgroup span="4" class="columns"></colgroup>
-        <tbody>
-           <tr>
-                <th>IdEnfant</th>
-                <td>{{ enfant.idEnfant }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ enfant.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ enfant.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Age</th>
-                <td>{{ enfant.age }}</td>
-            </tr>
-            <tr>
-                <th>Sexe</th>
-                <td>{{ enfant.sexe }}</td>
-            </tr>
-            <tr>
-                <th>Photo</th>
-                <td><img src= "{{asset('uploads/'~enfant.photo)}}" width="120" height="50"></td>
-            </tr>
-            <tr>
-                <th>IdA</th>
-                <td>{{ enfant.idA }}</td>
-            </tr>
-            
-        </tbody>
-        
-    </table>
-     <a class="btn btn-success"role="button" href="{{ path('app_enfant_index') }}">back to list</a>                                         
-  {# <a class="btn btn-success"role="button" href="{{ path('app_enfant_delete', {'idEnfant': enfant.idEnfant}) }}">Delete</a>                                         
-   #}
-    {{ include('enfant/_delete_form.html.twig') }}
-     {#  {{ include('activite/_delete_form.html.twig') }} #}
-                                                   
-                                
+            </div>
+            <div id="div_chart"></div>
+
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+                {{ gc_draw(piechart, 'div_chart') }}
+            </script>
+
+        </div>
+    </div>
+
+                                            </div>
+                                            
+                                          
+                                          
+
+                                                <div>
+                                                 <a class="btn btn-danger"role="button" href="{{ path('PDF_Activite') }}" style="margin:5px;">
+                                           <img src="{{asset('assets/images/pdf.png')}}" alt="pdf"  height="22" width="25">
+                                             </a>
+                                                </div>   
+
+                                          
                                         </div>
+
                                     </div>
                                 </div>
                     
@@ -449,13 +440,3 @@
         
     </body>
 </html>
-
-
-   
-
-    <a href="{{ path('app_enfant_index') }}">back to list</a>
-
-    <a href="{{ path('app_enfant_edit', {'idEnfant': enfant.idEnfant}) }}">edit</a>
-
-    
-{% endblock %}

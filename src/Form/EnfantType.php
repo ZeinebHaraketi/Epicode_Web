@@ -46,8 +46,9 @@ class EnfantType extends AbstractType
             ])
             ->add('sexe',ChoiceType::class,[
                 'choices'=> array(
-                    'Homme'=>'Homme',
-                    'Femme'=>'Femme',
+                    'Masculin'=>'Masculin',
+                    'Feminin'=>'Feminin',
+                   
                     
                 ),
             ])
