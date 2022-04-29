@@ -2,49 +2,53 @@
 
 namespace App\Entity;
 
+use App\Repository\CoachingRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Coaching
- *
- * @ORM\Table(name="coaching")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=CoachingRepository::class)
  */
 class Coaching
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="Id_S", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
-    private $idS;
+    private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="Date_S", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $dateS;
 
     /**
-     * @var float
-     *
-     * @ORM\Column(name="Prix", type="float", precision=10, scale=0, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $validation;
+
+    /**
+     * @ORM\Column(type="float")
      */
     private $prix;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="Id_Co", type="integer", nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
-    private $idCo;
+    private $nomUser;
 
-    public function getIdS(): ?int
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $prenomUser;
+
+    
+
+    public function getId(): ?int
     {
-        return $this->idS;
+        return $this->id;
     }
 
     public function getDateS(): ?string
@@ -55,6 +59,18 @@ class Coaching
     public function setDateS(string $dateS): self
     {
         $this->dateS = $dateS;
+
+        return $this;
+    }
+
+    public function getValidation(): ?string
+    {
+        return $this->validation;
+    }
+
+    public function setValidation(?string $validation): self
+    {
+        $this->validation = $validation;
 
         return $this;
     }
@@ -71,14 +87,26 @@ class Coaching
         return $this;
     }
 
-    public function getIdCo(): ?int
+    public function getNomUser(): ?string
     {
-        return $this->idCo;
+        return $this->nomUser;
     }
 
-    public function setIdCo(int $idCo): self
+    public function setNomUser(string $nomUser): self
     {
-        $this->idCo = $idCo;
+        $this->nomUser = $nomUser;
+
+        return $this;
+    }
+
+    public function getPrenomUser(): ?string
+    {
+        return $this->prenomUser;
+    }
+
+    public function setPrenomUser(string $prenomUser): self
+    {
+        $this->prenomUser = $prenomUser;
 
         return $this;
     }

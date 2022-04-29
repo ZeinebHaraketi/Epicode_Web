@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Programme
  *
  * @ORM\Table(name="programme", indexes={@ORM\Index(name="Id_c", columns={"Id_c"})})
- * @ORM\Entity(repositoryClass="App\Repository\ProgrammeRepository")
+ * @ORM\Entity
  */
 class Programme
 {
@@ -22,30 +22,30 @@ class Programme
     private $id;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="Nom_p", type="string", length=255, nullable=false)
+     * @ORM\Column(name="Nom_p", type="string", length=255, nullable=true)
      */
     private $nomP;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="Date_r", type="string", length=255, nullable=false)
+     * @ORM\Column(name="Date_r", type="string", length=255, nullable=true)
      */
     private $dateR;
 
     /**
-     * @var int
+     * @var int|null
      *
-     * @ORM\Column(name="Id_Kine", type="integer", nullable=false)
+     * @ORM\Column(name="Id_Kine", type="integer", nullable=true)
      */
     private $idKine;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="description", type="string", length=255, nullable=false)
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
 
@@ -69,7 +69,7 @@ class Programme
         return $this->nomP;
     }
 
-    public function setNomP(string $nomP): self
+    public function setNomP(?string $nomP): self
     {
         $this->nomP = $nomP;
 
@@ -81,7 +81,7 @@ class Programme
         return $this->dateR;
     }
 
-    public function setDateR(string $dateR): self
+    public function setDateR(?string $dateR): self
     {
         $this->dateR = $dateR;
 
@@ -93,7 +93,7 @@ class Programme
         return $this->idKine;
     }
 
-    public function setIdKine(int $idKine): self
+    public function setIdKine(?int $idKine): self
     {
         $this->idKine = $idKine;
 
@@ -105,7 +105,7 @@ class Programme
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 

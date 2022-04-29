@@ -3,20 +3,15 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Consultation
  *
  * @ORM\Table(name="consultation")
- * @ORM\Entity(repositoryClass="App\Repository\ConsultationRepository")
+ * @ORM\Entity
  */
 class Consultation
 {
-    protected $captchaCode;
-    
-   
-
     /**
      * @var int
      *
@@ -28,13 +23,6 @@ class Consultation
 
     /**
      * @var string
-     *    @Assert\Type(type={"alpha"})
-     *  * @Assert\Length(
-     *      min = 3,
-     *      max = 15,
-     *      minMessage = "Your first name must be at least {{ limit }} characters long",
-     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
-     * )
      *
      * @ORM\Column(name="Nom", type="string", length=255, nullable=false)
      */
@@ -63,7 +51,6 @@ class Consultation
 
     /**
      * @var string
-     *   * @Assert\Type(type={"alpha"})
      *
      * @ORM\Column(name="Etat_physique", type="string", length=255, nullable=false)
      */
@@ -78,14 +65,6 @@ class Consultation
 
     /**
      * @var string
-     *   @Assert\Type(type={"alpha"})
-     * * @Assert\Length(
-     *      min = 3,
-     *      max = 15,
-     *      minMessage = "Your first name must be at least {{ limit }} characters long",
-     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
-     * )
-     *
      *
      * @ORM\Column(name="Prenom", type="string", length=255, nullable=false)
      */
@@ -93,17 +72,10 @@ class Consultation
 
     /**
      * @var string
-     * @Assert\Email(
-     *     message = "The email '{{ value }}' is not a valid email."
-     * )
      *
      * @ORM\Column(name="Email", type="string", length=255, nullable=false)
      */
     private $email;
-    public function __toString()
-    {
-        return (string) $this->idC;
-    }
 
     public function getIdC(): ?int
     {
@@ -204,15 +176,6 @@ class Consultation
         $this->email = $email;
 
         return $this;
-    }
-    public function getCaptchaCode()
-    {
-      return $this->captchaCode;
-    }
-
-    public function setCaptchaCode($captchaCode)
-    {
-      $this->captchaCode = $captchaCode;
     }
 
 

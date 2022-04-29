@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Activite
  *
- * @ORM\Table(name="activite")
+ * @ORM\Table(name="activite", indexes={@ORM\Index(name="id_enfant", columns={"id_enfant"})})
  * @ORM\Entity
  */
 class Activite
@@ -43,9 +43,19 @@ class Activite
     private $type;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="id_enfant", type="integer", nullable=false)
+     * @ORM\Column(name="image", type="string", length=255, nullable=false)
+     */
+    private $image;
+
+    /**
+     * @var \Enfant
+     *
+     * @ORM\ManyToOne(targetEntity="Enfant")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_enfant", referencedColumnName="id_enfant")
+     * })
      */
     private $idEnfant;
 
@@ -90,12 +100,24 @@ class Activite
         return $this;
     }
 
-    public function getIdEnfant(): ?int
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getIdEnfant(): ?Enfant
     {
         return $this->idEnfant;
     }
 
-    public function setIdEnfant(int $idEnfant): self
+    public function setIdEnfant(?Enfant $idEnfant): self
     {
         $this->idEnfant = $idEnfant;
 

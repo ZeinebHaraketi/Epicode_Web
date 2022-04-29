@@ -24,7 +24,7 @@ class Produit
     /**
      * @var string
      *
-     * @ORM\Column(name="Nom_P", type="string", length=255, nullable=false)
+     * @ORM\Column(name="Nom_P", type="string", length=25, nullable=false)
      */
     private $nomP;
 
@@ -43,11 +43,11 @@ class Produit
     private $photo;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="Id_C", type="integer", nullable=false)
+     * @ORM\Column(name="Categories", type="string", length=25, nullable=false)
      */
-    private $idC;
+    private $categories;
 
     public function getIdP(): ?int
     {
@@ -90,14 +90,14 @@ class Produit
         return $this;
     }
 
-    public function getIdC(): ?int
+    public function getCategories(): ?string
     {
-        return $this->idC;
+        return $this->categories;
     }
 
-    public function setIdC(int $idC): self
+    public function setCategories(string $categories): self
     {
-        $this->idC = $idC;
+        $this->categories = $categories;
 
         return $this;
     }

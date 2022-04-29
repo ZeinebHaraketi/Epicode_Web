@@ -1,0 +1,82 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Coaching index{% endblock %}
+
+{% block body %}
+    <h1>Coaching index</h1>
+     {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="row">
+                                <div class="col-md-12  align-self-center">
+                                    <div class="card bg-white mb-6">
+                                        <div class="card-body new-user">
+                                            <h5 class="header-title mb-4 mt-0">Gestion des seances coaching</h5>
+                                            <div class="table-responsive">
+
+                                                   <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="border-top-0">{{knp_pagination_sortable(coachings,'IdSeance','Id')  }}</th>
+                <th class="border-top-0">{{knp_pagination_sortable(coachings,'DateSeance','DateS')  }}</th>
+                <th class="border-top-0">{{knp_pagination_sortable(coachings,'Prix','Prix')  }}</th>
+                <th class="border-top-0">{{knp_pagination_sortable(coachings,'NomUser','NomUser')  }}</th>
+                <th class="border-top-0">{{knp_pagination_sortable(coachings,'PrenomUser','PrenomUser')  }}</th>
+                <th class="border-top-0">validation</th>
+                <th class="border-top-0">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for coaching in coachings %}
+            <tr>
+                <td>{{ coaching.id }}</td>
+                <td>{{ coaching.dateS }}</td>
+                <td>{{ coaching.prix }}</td>
+                <td>{{ coaching.nomUser }}</td>
+                <td>{{ coaching.prenomUser }}</td>
+                 <td>
+                    <a href="{{ path('app_coaching_show', {'id': coaching.id}) }}">show</a>
+                    <a href="{{ path('app_coaching_edit', {'id': coaching.id}) }}">edit</a>
+                    
+                </td>
+                <td>
+                    <a href="{{ path('app_coaching_show', {'id': coaching.id}) }}">show</a>
+                    <a href="{{ path('app_coaching_edit', {'id': coaching.id}) }}">edit</a>
+                    
+                </td>
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        
+    </table>
+    
+                                        </div>
+
+                                    </div>
+                                </div>
+                    
+                            </div>                                                 
+                        </div><!-- container -->
+
+
+                   
+    {{ knp_pagination_render(coachings) }} 
+
+    <a class="btn btn-info" href="{{path('app_coaching_new')}}"> Create new </a>
+    <a class="btn btn-secondary" href="{{path('coaching_stat')}}"> Stat </a>
+    <a class="btn btn-dark" href="{{path('pdf')}}"> PDF </a>
+   
+    
+    
+    
+   
+    
+{% endblock %}

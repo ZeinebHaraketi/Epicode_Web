@@ -1,0 +1,29 @@
+
+<div class="table-responsive">
+    <table border="2" class="table mb-0">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>DateS</th>
+            <th>Prix</th>
+            <th>NomUser</th>
+            <th>PrenomUser</th>
+            
+                             
+        </tr>
+        </thead>
+        <tbody>
+        {%   for coaching in coachings  %}
+        <tr>
+            <td>{{ coaching.id }}</td>
+                <td>{{ coaching.dateS }}</td>
+                <td>{{ coaching.prix }}</td>
+                <td>{{ coaching.nomUser }}</td>
+                <td>{{ coaching.prenomUser }}</td>
+        </tr>
+
+        {% endfor %}
+        </tbody>
+
+</table>
+</div>

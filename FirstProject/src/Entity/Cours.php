@@ -2,86 +2,145 @@
 
 namespace App\Entity;
 
+use App\Repository\CoursRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Cours
- *
- * @ORM\Table(name="cours")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=CoursRepository::class)
  */
 class Cours
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="Id_C", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idC;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Nom_C", type="string", length=255, nullable=false)
-     */
-    private $nomC;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Date_C", type="string", length=255, nullable=false)
-     */
-    private $dateC;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="Id_Co", type="integer", nullable=false)
-     */
-    private $idCo;
-
-    public function getIdC(): ?int
+    protected $captchaCode;
+    
+    public function getCaptchaCode()
     {
-        return $this->idC;
+      return $this->captchaCode;
+    }
+
+    public function setCaptchaCode($captchaCode)
+    {
+      $this->captchaCode = $captchaCode;
+    }
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Nom_C;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Date_C;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Id_Co;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image_cours;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="reservationCours")
+     */
+    private $reservations;
+
+    public function __construct()
+    {
+        $this->reservations = new ArrayCollection();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     public function getNomC(): ?string
     {
-        return $this->nomC;
+        return $this->Nom_C;
     }
 
-    public function setNomC(string $nomC): self
+    public function setNomC(string $Nom_C): self
     {
-        $this->nomC = $nomC;
+        $this->Nom_C = $Nom_C;
 
         return $this;
     }
 
     public function getDateC(): ?string
     {
-        return $this->dateC;
+        return $this->Date_C;
     }
 
-    public function setDateC(string $dateC): self
+    public function setDateC(string $Date_C): self
     {
-        $this->dateC = $dateC;
+        $this->Date_C = $Date_C;
 
         return $this;
     }
 
-    public function getIdCo(): ?int
+    public function getIdCo(): ?string
     {
-        return $this->idCo;
+        return $this->Id_Co;
     }
 
-    public function setIdCo(int $idCo): self
+    public function setIdCo(string $Id_Co): self
     {
-        $this->idCo = $idCo;
+        $this->Id_Co = $Id_Co;
 
         return $this;
     }
 
+    public function getImageCours(): ?string
+    {
+        return $this->image_cours;
+    }
 
+    public function setImageCours(?string $image_cours): self
+    {
+        $this->image_cours = $image_cours;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setReservationCours($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getReservationCours() === $this) {
+                $reservation->setReservationCours(null);
+            }
+        }
+
+        return $this;
+    }
 }

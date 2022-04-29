@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Panier
  *
- * @ORM\Table(name="panier")
+ * @ORM\Table(name="panier", indexes={@ORM\Index(name="Id_P", columns={"Id_P"})})
  * @ORM\Entity
  */
 class Panier
@@ -29,16 +29,9 @@ class Panier
     private $quantite;
 
     /**
-     * @var float
-     *
-     * @ORM\Column(name="Totale", type="float", precision=10, scale=0, nullable=false)
-     */
-    private $totale;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="Coupon", type="string", length=255, nullable=false)
+     * @ORM\Column(name="Coupon", type="string", length=25, nullable=false)
      */
     private $coupon;
 
@@ -62,18 +55,6 @@ class Panier
     public function setQuantite(int $quantite): self
     {
         $this->quantite = $quantite;
-
-        return $this;
-    }
-
-    public function getTotale(): ?float
-    {
-        return $this->totale;
-    }
-
-    public function setTotale(float $totale): self
-    {
-        $this->totale = $totale;
 
         return $this;
     }
