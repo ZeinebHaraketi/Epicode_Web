@@ -36,9 +36,9 @@ class Blg
     private $contenu;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="Date", type="string", length=255, nullable=false)
+     * @ORM\Column(name="Date", type="datetime", nullable=false)
      */
     private $date;
 
@@ -92,12 +92,12 @@ class Blg
         return $this;
     }
 
-    public function getDate(): ?string
+    public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
 
-    public function setDate(string $date): self
+    public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
 

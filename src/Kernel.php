@@ -23,7 +23,9 @@ class Kernel extends BaseKernel
                 yield new $class();
             }
         }
+		
     }
+    
 
     public function getProjectDir(): string
     {

@@ -15,7 +15,7 @@ class Evennement
     /**
      * @var int
      *
-     * @ORM\Column(name="Id-event", type="integer", nullable=false)
+     * @ORM\Column(name="Id_event", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */

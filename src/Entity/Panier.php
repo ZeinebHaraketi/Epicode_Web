@@ -35,12 +35,15 @@ class Panier
      */
     private $coupon;
 
+
     /**
-     * @var int
-     *
-     * @ORM\Column(name="Id_P", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity=Produit::class)
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Id_P", referencedColumnName="Id_P")
+     * })
      */
     private $idP;
+
 
     public function getIdPa(): ?int
     {
@@ -71,16 +74,20 @@ class Panier
         return $this;
     }
 
-    public function getIdP(): ?int
+    /**
+     * @return mixed
+     */
+    public function getIdP()
     {
         return $this->idP;
     }
 
-    public function setIdP(int $idP): self
+    /**
+     * @param mixed $idP
+     */
+    public function setIdP($idP): void
     {
         $this->idP = $idP;
-
-        return $this;
     }
 
 

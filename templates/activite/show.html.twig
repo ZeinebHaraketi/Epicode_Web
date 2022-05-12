@@ -109,39 +109,28 @@
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-clipboard-outline"></i><span> Activite </span> <span class="badge badge-pill badge-info float-right"></span></a>
                                 <ul class="list-unstyled">
                                 <li><a href="{{ path('app_activite_index') }}">Accueil Activite</a></li>
-                                    <li><a href="form-elements.html">Form Elements</a></li>
-                                    <li><a href="form-validation.html">Form Validation</a></li>
-                                    <li><a href="form-advanced.html">Form Advanced</a></li>
-                                    <li><a href="form-editors.html">Form Editors</a></li>
-                                    <li><a href="form-uploads.html">Form File Upload</a></li>
-                                    <li><a href="form-mask.html">Form Mask</a></li>
-                                    <li><a href="form-summernote.html">Summernote</a></li>
-                                    <li><a href="form-xeditable.html">Form Xeditable</a></li>
+                                    
                                 </ul>
                             </li><li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-clipboard-outline"></i><span> Enfant</span> <span class="badge badge-pill badge-info float-right"></span></a>
                                 <ul class="list-unstyled">
                                 <li><a href="{{ path('app_enfant_index') }}">Accueil Enfant</a></li>
-                                    <li><a href="form-elements.html">Form Elements</a></li>
-                                    <li><a href="form-validation.html">Form Validation</a></li>
-                                    <li><a href="form-advanced.html">Form Advanced</a></li>
-                                    <li><a href="form-editors.html">Form Editors</a></li>
-                                    <li><a href="form-uploads.html">Form File Upload</a></li>
-                                    <li><a href="form-mask.html">Form Mask</a></li>
-                                    <li><a href="form-summernote.html">Summernote</a></li>
-                                    <li><a href="form-xeditable.html">Form Xeditable</a></li>
+                                   
                                 </ul>
                             </li>
 
                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-gauge"></i><span> Charts </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-clipboard-outline"></i><span> Blog</span><span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="charts-morris.html">Morris Chart</a></li>
-                                    <li><a href="charts-chartist.html">Chartist Chart</a></li>
-                                    <li><a href="charts-chartjs.html">Chartjs Chart</a></li>
-                                    <li><a href="charts-flot.html">Flot Chart</a></li>
-                                    <li><a href="charts-c3.html">C3 Chart</a></li>
-                                    <li><a href="charts-other.html">Jquery Knob Chart</a></li>
+                                <li><a href="{{ path('app_blg_index') }}">Accueil Blog</a></li>
+                                    
+                                </ul>
+                            </li>
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-clipboard-outline"></i><span> Commentaire </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <ul class="list-unstyled">
+                                <li><a href="{{ path('app_commentaire_index') }}">Accueil Commentaire</a></li>
+                                   
                                 </ul>
                             </li>
 
@@ -393,7 +382,7 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ activite.image }}</td>
+                <td><img src= "{{asset('uploads/'~activite.image)}}" width="120" height="50"></td>
             </tr>
             <tr>
                 <th>ID_Enfant</th>

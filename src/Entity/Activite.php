@@ -4,12 +4,14 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Activite
  *
  * @ORM\Table(name="activite", indexes={@ORM\Index(name="id_enfant", columns={"id_enfant"})})
  * @ORM\Entity
+ * 
  */
 class Activite
 {
@@ -19,34 +21,50 @@ class Activite
      * @ORM\Column(name="id_a", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups("act")
+     * @Groups("post:read")
      */
     private $idA;
 
     /**
      * @var string
-     * @Assert\NotNull
+     *
      * @ORM\Column(name="nom_a", type="string", length=50, nullable=false)
+     * @Assert\Length(
+     * min = 5,
+     * max = 10,
+     * minMessage = "Votre Nom doit être au moins {{ limit }} characters long",
+     * maxMessage = "Votre Nom ne peut pas etre plus {{ limit }} characters"
+     * )
+     * @Groups("act")
+     * @Groups("post:read")
      */
     private $nomA;
 
     /**
      * @var int
-     * @Assert\NotNull
+     *
      * @ORM\Column(name="cat_age", type="integer", nullable=false)
+     * @Groups("act")
+     * @Groups("post:read")
      */
     private $catAge;
 
     /**
      * @var string
-     * @Assert\NotNull
+     *
      * @ORM\Column(name="type", type="string", length=30, nullable=false)
+     * @Groups("act")
+     * @Groups("post:read")
      */
     private $type;
 
     /**
-     * @var string
-     * 
-     * @ORM\Column(name="image", type="string", length=255, nullable=false)
+     * @var string|null
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     * @Groups("act")
+     * @Groups("post:read")
      */
     private $image;
 
@@ -57,6 +75,8 @@ class Activite
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_enfant", referencedColumnName="id_enfant")
      * })
+     * @Groups("act")
+     * @Groups("post:read")
      */
     private $idEnfant;
 
@@ -106,7 +126,7 @@ class Activite
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 

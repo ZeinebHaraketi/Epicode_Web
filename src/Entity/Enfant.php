@@ -4,12 +4,13 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Enfant
  *
  * @ORM\Table(name="enfant")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\EnfantRepository")
  */
 class Enfant
 {
@@ -19,6 +20,8 @@ class Enfant
      * @ORM\Column(name="id_enfant", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+	 * @Groups("enf")
+     * @Groups("post:read")
      */
     private $idEnfant;
 
@@ -26,6 +29,15 @@ class Enfant
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=30, nullable=false)
+     * @Assert\NotNull
+     * @Assert\Length(
+     * min = 5,
+     * max = 10,
+     * minMessage = "Votre Nom doit être au moins {{ limit }} characters long",
+     * maxMessage = "Votre Nom ne peut pas etre plus {{ limit }} characters"
+     * )
+	 * @Groups("enf")
+     * @Groups("post:read")
      */
     private $nom;
 
@@ -33,6 +45,15 @@ class Enfant
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=30, nullable=false)
+     * @Assert\NotNull
+     * @Assert\Length(
+     * min = 5,
+     * max = 10,
+     * minMessage = "Votre Prenom doit être au moins {{ limit }} characters long",
+     * maxMessage = "Votre Prenom ne peut pas etre plus {{ limit }} characters"
+     * )
+	 * @Groups("enf")
+     * @Groups("post:read")
      */
     private $prenom;
 
@@ -40,6 +61,8 @@ class Enfant
      * @var int
      *
      * @ORM\Column(name="age", type="integer", nullable=false)
+	 * @Groups("enf")
+     * @Groups("post:read")
      */
     private $age;
 
@@ -47,6 +70,8 @@ class Enfant
      * @var string
      *
      * @ORM\Column(name="sexe", type="string", length=15, nullable=false)
+     * @Groups("enf")
+     * @Groups("post:read")
      */
     private $sexe;
 
@@ -54,6 +79,8 @@ class Enfant
      * @var string
      *
      * @ORM\Column(name="photo", type="string", length=255, nullable=false)
+	 * @Groups("enf")
+     * @Groups("post:read")
      */
     private $photo;
 
@@ -61,7 +88,8 @@ class Enfant
      * @var int
      * @Assert\NotNull
      * @ORM\Column(name="id_a", type="integer", nullable=false)
-     * 
+     * @Groups("enf")
+     * @Groups("post:read")
      */
     private $idA;
     
